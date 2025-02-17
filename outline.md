@@ -1,0 +1,125 @@
+# Outline for School Outreach Program
+
+* Each day is ~90 minutes
+
+## Week 1
+
+* Introduction (5 minutes)
+    * Introduce ourselves, WiC, and MESA
+    * Briefly go over the program
+* Students introduce themselves (20 minutes)
+    * Name and year
+    * Why did you sign up for this program?
+    * Have you programmed before?
+    * One fun fact about yourself :)*
+* Lecture (20 minutes)
+    * What is a program?
+        * Talk about how computers require you to be very specific
+        * It might seem hard, but we'll learn bit-by-bit
+        * **Show the make-up of an Arduino program with a screenshot**
+    * What is a Zumo?
+    * What is an Arduino?
+* Hands-on programming (40 minutes)
+    * Open the Arduino IDE
+    * Install the ZumoShield library
+    * Program comes preloaded with two functions, `setup()` and `loop()`
+    * A function is a block of reusable code that does something specific
+    * Setup is played once at the beginning
+    * Loop loops
+    
+``` C++
+    void setup() {
+        pinMode(13, OUTPUT);
+        digitalWrite(13, HIGH);
+}
+```
+
+`pinMode()` and `digitalWrite()` are also functions, notice how they have parentheses following their names. When we use functions, we end the line with a semicolon, similar to using a period to end a sentence.
+
+`pinMode(13, OUTPUT)` configures the given pin, in this case pin 13, as an output. Pin 13 is the LED found on the top of your Zumo robots.
+
+`digitalWrite(13, HIGH)` turns pin 13 (the LED) on. LOW would turn it off.
+
+Say we wanted to turn the LED off after 3 seconds. How would you do it? How would we be able to tell the computer that it should wait 3 seconds?
+
+The function `delay()` pauses the program for a given amount of time. `delay(1000)` pauses the program for 1 second. Knowing that, and that putting LOW instead of HIGH into the `digitalWrite()` function will turn it off, *can you add to the code and turn the LED off after 3 seconds?*
+
+**Solution:**
+
+``` C++
+    void setup() {
+        pinMode(13, OUTPUT);
+        digitalWrite(13, HIGH);
+        delay(3000);
+        digitalWrite(13, LOW);
+    }
+```
+* Outro (5 minutes)
+    * Go over the day's accomplishments
+        * Learned about our Arduino Zumo robot, programs, and functions
+        * `pinMode()`, `digitalWrite()`, and `delay()`
+        * Hands-on coding with the Arduino Zumo's LED
+    * What's planned for next week?
+        * Making the robot move!
+
+## Week 2
+
+* Review of last week (10 minutes)
+* Lesson (60 minutes)
+    * Helper code for today, include at top of program, above setup():
+```C++
+    #include <ZumoMotors.h>
+    const int SPEED = 100;
+    ZumoMotors motors;
+```
+
+**Explain while the students copy the code.**
+
+`include <ZumoMotors.h>`: ZumoMotors is a **library**, pre-written code made by a programmer so we can do specific things, in this case, making our robot move. By "including" it, we can use it in our program. Note there is no semicolon at the end of the line!
+
+`const int SPEED = 100;` is us making a **variable**, that is called `SPEED`. Compare it to a variable in math where x or y can stand for certain numbers like how in x + 4 = 6, x stands for 2. It's similar in programming, but variables are basically containers for information or **data** as we call it. Think of it like every time we write `SPEED` in our program, the computer knows it actually means `100`. `int` is short for integer, meaning that `SPEED` represents a whole number. `const` means that `SPEED` can't change throughout our program, which will be important.
+
+`ZumoMotors motors;` means we can actually use the ZumoMotors code in our program.
+
+`motors.setSpeeds(SPEED, SPEED)` is code from the **library** we imported earlier. The two numbers inside the parentheses are **arguments**. Think of them like inputs to the function. *What do you guys think will happen if we ran this code, knowing it relates to the movement motors?* However, it would probably get hard to retype over and over again. We made our own variable earlier with `SPEED`, *why don't we try writing our own functions as well?* 
+
+```C++
+    void turnOnMotors() {
+        motors.setSpeeds(SPEED, SPEED);
+    }
+```
+Now everytime we write `turnOnMotors()`, it will run the `motors.setSpeeds(SPEED, SPEED)` code inside of it. Before we test it out, we should have a function that turns off the motors as well. *Does anyone know what number we could put here to make the robot stop moving?*
+```C++
+    void turnOffMotors() {
+        motors.setSpeeds(???, ???)
+    }
+```
+**Solution:**
+```C++
+    void turnOffMotors() {
+        motors.setSpeeds(0, 0)
+    }
+```
+Let's try to think back to our lesson last week where we made the robot's LED to flash for 3 seconds and then stop. *Do you guys think you can modify the code we had last week to make it move for 3 seconds and then come to a stop?*
+
+**Solution:**
+```C++
+    void setup() {
+        turnOnMotors();
+        delay(3000);
+        turnOffMotors();
+    }
+```
+
+Let's go back to the original code for the motor's speed `motors.setSpeeds(SPEED, SPEED)`. The function's first **parameter** is the robot's left wheels and the second **parameter** is the robot's right wheels. *What do you think will happen if we change the inputs so that they're not the same? What if they're opposite?*
+
+```C++
+    void turnInPlace() {
+        motors.setSpeeds(-SPEED, SPEED);
+    }
+```
+
+
+
+* Outro (10 minutes)
+
