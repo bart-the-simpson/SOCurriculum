@@ -2,6 +2,9 @@
 
 * Each day is ~90 minutes
 
+## Initial setup
+Arrange with teachers to ensure that the Arduino IDE is installed on student computers: https://arduino.cc/download/
+
 ## Week 1
 
 * Introduction (5 minutes)
@@ -65,7 +68,8 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 ## Week 2
 
 * Review of last week (10 minutes)
-* Lesson (60 minutes)
+* Students install Zumo Shield library (necessary in order to use Zumo header files) (5 minutes)
+* Lesson (55 minutes)
     * Helper code for today, include at top of program, above setup():
 ```C++
     #include <ZumoMotors.h>
@@ -75,11 +79,11 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 
 **Explain while the students copy the code.**
 
-`include <ZumoMotors.h>`: ZumoMotors is a **library**, pre-written code made by a programmer so we can do specific things, in this case, making our robot move. By "including" it, we can use it in our program. Note there is no semicolon at the end of the line!
+`include <ZumoMotors.h>`: ZumoMotors is a **library**, pre-written code made by a programmer so we can do specific things, in this case, making our robot move. Someone has written all the functions to make the robot move - this statement takes the contents of the file "ZumoMotors.h" and copies and pastes it into our code, so we can use them in our program. Note there is no semicolon at the end of the line!
 
-`const int SPEED = 100;` is us making a **variable**, that is called `SPEED`. Compare it to a variable in math where x or y can stand for certain numbers like how in x + 4 = 6, x stands for 2. It's similar in programming, but variables are basically containers for information or **data** as we call it. Think of it like every time we write `SPEED` in our program, the computer knows it actually means `100`. `int` is short for integer, meaning that `SPEED` represents a whole number. `const` means that `SPEED` can't change throughout our program, which will be important.
+`const int SPEED = 100;` is us making a **constant**, that is called `SPEED`. Compare it to a variable in math where x or y can stand for certain numbers like how in x + 4 = 6, x stands for 2. It's similar in programming, but constants are basically containers for information or **data** as we call it. Think of it like every time we write `SPEED` in our program, the computer knows it actually means `100`. `int` is short for integer, meaning that `SPEED` represents an integer. `const` means that `SPEED` can't change throughout our program, which will be important.
 
-`ZumoMotors motors;` means we can actually use the ZumoMotors code in our program.
+`ZumoMotors motors;` allows us to use the ZumoMotors code in our program.
 
 `motors.setSpeeds(SPEED, SPEED)` is code from the **library** we imported earlier. The two numbers inside the parentheses are **arguments**. Think of them like inputs to the function. *What do you guys think will happen if we ran this code, knowing it relates to the movement motors?* However, it would probably get hard to retype over and over again. We made our own variable earlier with `SPEED`, *why don't we try writing our own functions as well?* 
 
@@ -88,7 +92,7 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
         motors.setSpeeds(SPEED, SPEED);
     }
 ```
-Now everytime we write `turnOnMotors()`, it will run the `motors.setSpeeds(SPEED, SPEED)` code inside of it. Before we test it out, we should have a function that turns off the motors as well. *Does anyone know what number we could put here to make the robot stop moving?*
+Now everytime we write `turnOnMotors();`, it will run the `motors.setSpeeds(SPEED, SPEED)` code inside of it. Before we test it out, we should have a function that turns off the motors as well. *Does anyone know what number we could put here to make the robot stop moving?*
 ```C++
     void turnOffMotors() {
         motors.setSpeeds(???, ???)
