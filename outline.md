@@ -1,6 +1,8 @@
 # Outline for School Outreach Program
 
 * Each day is ~90 minutes
+* *italicized text* means a question that you can turn and ask the students
+* **bold** is for important vocabulary or an action you take
 
 ## Initial setup
 Arrange with teachers to ensure that the Arduino IDE is installed on student computers: https://arduino.cc/download/
@@ -16,19 +18,20 @@ Arrange with teachers to ensure that the Arduino IDE is installed on student com
     * Have you programmed before?
     * One fun fact about yourself :)*
 * Lecture (20 minutes)
-    * What is a program?
-        * Talk about how computers require you to be very specific
+    * What is a **program**?
+        * Computers require you to be very specific
         * It might seem hard, but we'll learn bit-by-bit
         * **Show the make-up of an Arduino program with a screenshot**
-    * What is a Zumo?
-    * What is an Arduino?
+    * What is a **Zumo**?
+    * What is an **Arduino**?
 * Hands-on programming (40 minutes)
     * Open the Arduino IDE
     * Install the ZumoShield library
     * Program comes preloaded with two functions, `setup()` and `loop()`
-    * A function is a block of reusable code that does something specific
-    * Setup is played once at the beginning
-    * Loop loops
+    * A **function** is a block of reusable code that does something specific
+        * You can write your own functions, but today we'll be working with functions that are already in the program
+    * setup() is run once at the beginning
+    * loop() loops
     
 ``` C++
     void setup() {
@@ -79,9 +82,9 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 
 **Explain while the students copy the code.**
 
-`include <ZumoMotors.h>`: ZumoMotors is a **library**, pre-written code made by a programmer so we can do specific things, in this case, making our robot move. Someone has written all the functions to make the robot move - this statement takes the contents of the file "ZumoMotors.h" and copies and pastes it into our code, so we can use them in our program. Note there is no semicolon at the end of the line!
+`include <ZumoMotors.h>`: ZumoMotors is a **library**, pre-written code made by a programmer so we can do specific things, in this case, making our robot move. Someone has written all the functions to make the robot move - this statement takes the contents of the file "ZumoMotors.h" and copies it into our code, so we can use them in our program. Note there is no semicolon at the end of the line!
 
-`const int SPEED = 100;` is us making a **constant**, that is called `SPEED`. Compare it to a variable in math where x or y can stand for certain numbers like how in x + 4 = 6, x stands for 2. It's similar in programming, but constants are basically containers for information or **data** as we call it. Think of it like every time we write `SPEED` in our program, the computer knows it actually means `100`. `int` is short for integer, meaning that `SPEED` represents an integer. `const` means that `SPEED` can't change throughout our program, which will be important.
+`const int SPEED = 100;` is us making a **constant**, that is called `SPEED`. ~~Compare it to a variable in math where x or y can stand for certain numbers like how in x + 4 = 6, x stands for 2.~~ Compare it to a constant in math, like pi, where when you write down pi, it actually stands in for the number 3.14... It's similar in programming, but constants are basically containers for information or **data** as we call it. Think of it like every time we write `SPEED` in our program, the computer knows it actually means `100`. `int` is short for integer, meaning that `SPEED` represents an integer. `const` is what makes it a constant and means that `SPEED` can't change throughout our program, which will be important.
 
 `ZumoMotors motors;` allows us to use the ZumoMotors code in our program.
 
@@ -152,4 +155,48 @@ The statement inside the parentheses is a **Boolean** value, which means it can 
 
 If you flip your Arduino Zumo upside down, you will see six sensors. These sensors detect how light or dark the surface under it is. Tying this back to what we were doing last week with movement, what if I wanted my robot to move until it hit this black strip of electrical tape? We would use a conditional statement, similar to our simple program here (x > 10 program).
 
-We're going to represent the set of six sensors as an **array**. An array in C++ is a collection of data items. See `int values[6] = {3, 2, 12, 54, 2, 1}`. `values` is the name of the array, [6] is the size of the array, and `int` is the data type that's allowed to be in the array. `{3, 2, 12, 54, 2, 1}` is the values in the actual array and these are all `int`s. Each space in the array is used to store a number similar to the constants and variables we worked with before. 
+We're going to represent the set of six sensors as an **array**. An array in C++ is a collection of data items. See `int values[6] = {3, 2, 12, 54, 2, 1}`. `values` is the name of the array, [6] is the size of the array, and `int` is the data type that's allowed to be in the array. `{3, 2, 12, 54, 2, 1}` is the values in the actual array and notice these are all `int`s. 
+
+Each space in the array is used to store a number similar to the constants and variables we worked with before. To access the numbers in the array, we type `values[number]` where `number` is the location of the value, starting at 0. `values[0]` would be `3`, `values[1]` would be `2`, `values[2]` would be `12`, and so on. 
+
+What we're going to do is have the sensors feed their inputs -- what they "see" -- into the array. This way, we can check for when the sensor detects something. Today we'll be adding onto the code we worked on last week with the motors.
+
+```C++
+    #include <ZumoReflectanceSensorArray.h> //new
+    #include <ZumoMotors.h>
+
+    const int DETECTION_THRESHOLD = 1300; // new
+    const int SPEED = 100;
+    int values[6];
+
+    ZumoReflectanceSensorArray sensors; //new
+    ZumoMotors motors;
+
+    void setup() {
+        sensors.init(); // new
+    }
+
+    void loop() {
+        sensors.read(values); // new
+    }
+    
+    void turnOnMotors() { motors.setSpeeds(SPEED, SPEED); }
+
+    void turnOffMotors() { motors.setSpeeds(0, 0); }
+
+    void turnInPlace() { motors.setSpeeds(-SPEED, SPEED); }
+    
+```
+
+Here's a simple program where if the sensors detect a dark line, it activates its LED.
+
+```C++
+    void loop() {
+        sensors.read(value);
+        if (values[0] > DETECTION_THRESHOLD) {
+            digitalWrite(LED_PIN, HIGH);
+        }
+    }
+```
+
+
