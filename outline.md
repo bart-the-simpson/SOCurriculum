@@ -5,7 +5,7 @@
 ## Initial setup
 Arrange with teachers to ensure that the Arduino IDE is installed on student computers: https://arduino.cc/download/
 
-## Week 1
+## Week 1: Intro to Programming and LEDs
 
 * Introduction (5 minutes)
     * Introduce ourselves, WiC, and MESA
@@ -65,10 +65,10 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
     * What's planned for next week?
         * Making the robot move!
 
-## Week 2
+## Week 2: Functions and Motors
 
 * Review of last week (10 minutes)
-* Students install Zumo Shield library (necessary in order to use Zumo header files) (5 minutes)
+* Students install ZumoShield library (necessary in order to use Zumo header files) (5 minutes)
 * Lesson (55 minutes)
     * Helper code for today, include at top of program, above setup():
 ```C++
@@ -85,7 +85,7 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 
 `ZumoMotors motors;` allows us to use the ZumoMotors code in our program.
 
-`motors.setSpeeds(SPEED, SPEED)` is code from the **library** we imported earlier. The two numbers inside the parentheses are **arguments**. Think of them like inputs to the function. *What do you guys think will happen if we ran this code, knowing it relates to the movement motors?* However, it would probably get hard to retype over and over again. We made our own variable earlier with `SPEED`, *why don't we try writing our own functions as well?* 
+`motors.setSpeeds(SPEED, SPEED)` is code from the **library** we imported earlier. The two numbers inside the parentheses are **arguments**. Think of them like inputs to the function. *What do you guys think will happen if we ran this code, knowing it relates to the movement motors?* However, it would probably get hard to retype over and over again. We made our own variable earlier with `SPEED`, why don't we try writing our own functions as well? 
 
 ```C++
     void turnOnMotors() {
@@ -122,8 +122,32 @@ Let's go back to the original code for the motor's speed `motors.setSpeeds(SPEED
         motors.setSpeeds(-SPEED, SPEED);
     }
 ```
-
+We're going to allot some time to allow you guys to experiment with the movement motors on the robot! **Lead and helpers walk around, help with code, and encourage the students to have fun with the robot while making sure it doesn't fall!**
 
 
 * Outro (10 minutes)
+    * Go over the day's accomplishments
+        * Learned about robot movement, libraries, and constants
+        * `motors.setSpeeds()`, `turnOnMotors()`, `turnOffMotors()`, `turnInPlace()`
+        * Experimenting with the robot's movements
+    * What's planned for next week?
+        * Buzzers and Sensors!
 
+## Week 3: Conditional Statements and Sensors
+
+* Review of last week (10 minutes)
+* Lesson (60 minutes)
+  * A lot of coding revolves around **conditional statements**. If you're already familiar with coding, you may recognize them as `if`-`then`-`else` statements.
+``` C++
+    int x = 5;
+    if (x > 10) {
+        // number is greater than 10
+        // does some code
+    } else {
+        // number is less than or equal to 10
+        // does nothing
+    }
+```
+The statement inside the parentheses is a **Boolean** value, which means it can either be **true** or **false**. *In the example above, is `x > 10` true or false?* That means our program only does something if the integer `x` is greater than 10.
+
+If you flip your Arduino Zumo upside down, you will see six sensors. These sensors detect how light or dark the surface under it is. Tying this back to what we were doing last week with movement, what if I wanted my robot to move until it hit this black strip of electrical tape? We would use a conditional statement, similar to our simple program here (x > 10 program).
