@@ -192,11 +192,23 @@ Here's a simple program where if the sensors detect a dark line, it activates it
 
 ```C++
     void loop() {
-        sensors.read(value);
+        sensors.read(values);
         if (values[0] > DETECTION_THRESHOLD) {
             digitalWrite(LED_PIN, HIGH);
         }
     }
 ```
 
+Using the functions we wrote last week, can you guys write a program that starts with the robot moving and then the robot comes to a stop when it detects a black line? **Lead and helpers walk around and help.**
 
+**Solution:**
+```C++
+void loop() {
+    sensors.read(values);
+    turnOnMotors();
+    if (values[0] > DETECTION_THRESHOLD) {
+        turnOffMotors();
+    }
+}
+
+```
