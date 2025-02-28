@@ -1,7 +1,7 @@
 # Outline for School Outreach Program
 
 * Each day is ~90 minutes
-* *italicized text* means a question that you can turn and ask the students
+* *italicized text* means a question that you can turn and ask the students. Rhetorical questions generally are not italicized
 * **bold** is for important vocabulary or an action you take
 
 ## Initial setup
