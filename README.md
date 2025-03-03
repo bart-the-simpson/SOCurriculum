@@ -110,7 +110,7 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 
 `include <ZumoMotors.h>`: ZumoMotors is a **library**, pre-written code made by a programmer so we can do specific things, in this case, making our robot move. Someone has written all the functions to make the robot move - this statement takes the contents of the file "ZumoMotors.h" and copies it into our code, so we can use them in our program. Note there is no semicolon at the end of the line!
 
-`const int SPEED = 100;` is us making a **constant**, that is called `SPEED`. ~~Compare it to a variable in math where x or y can stand for certain numbers like how in x + 4 = 6, x stands for 2.~~ Compare it to a constant in math, like pi, where when you write down pi, it actually stands in for the number 3.14... It's similar in programming, but constants are basically containers for information or **data** as we call it. Think of it like every time we write `SPEED` in our program, the computer knows it actually means `100`. `int` is short for integer, meaning that `SPEED` represents an integer. `const` is what makes it a constant and means that `SPEED` can't change throughout our program, which will be important.
+`const int SPEED = 100;` is us making a **constant**, that is called `SPEED`.  Compare it to a constant in math, like pi, where when you write down pi, it actually stands in for the number 3.14... It's similar in programming, but constants are basically containers for information or **data** as we call it. Think of it like every time we write `SPEED` in our program, the computer knows it actually means `100`. `int` is short for integer, meaning that `SPEED` represents an integer. `const` is what makes it a constant and means that `SPEED` can't change throughout our program, which will be important.
 
 `ZumoMotors motors;` allows us to use the ZumoMotors code in our program.
 
@@ -187,6 +187,8 @@ A lot of coding revolves around **conditional statements**. If you're already fa
         // does nothing
     }
 ```
+Here, x is a **variable**. It's similar to a constant in that it stores data, but a variable could change in the middle of a program.
+
 The statement inside the parentheses is a **Boolean** value, which means it can either be **true** or **false**. *In the example above, is* `x > 10` *true or false?* That means our program only does something if the integer `x` is greater than 10.
 
 If you flip your Arduino Zumo upside down, you will see six sensors. These sensors detect how light or dark the surface under it is. Tying this back to what we were doing last week with movement, what if I wanted my robot to move until it hit this black strip of electrical tape? We would use a conditional statement, similar to our simple program here (x > 10 program).
