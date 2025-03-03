@@ -6,8 +6,6 @@
 * **bold** is for important vocabulary
 * ==highlighted== text is for actions
 
-
-
 ## Initial setup
 
 Arrange with teachers to ensure that the Arduino IDE is installed on student computers: https://arduino.cc/download/
@@ -41,7 +39,7 @@ Arrange with teachers to ensure that the Arduino IDE is installed on student com
 
 (40 minutes)
 
-  * Open the Arduino IDE and Install the **ZumoShield library**
+  * Open the Arduino IDE
   * Program comes preloaded with two functions, `setup()` and `loop()`
   * A **function** is a block of reusable code that does something specific
       * You can write your own functions, but today we'll be working with functions that are already in the program
@@ -91,10 +89,14 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 ## Week 2: Functions and Motors
 
 * Review of last week (10 minutes)
-* Students install ZumoShield library (necessary in order to use Zumo header files) (5 minutes)
 ### Lesson Plan
 
-(60 minutes)
+(60 Minutes)
+
+  * Students install **ZumoShield** library 
+    * necessary in order to use Zumo header files
+
+#### Intro to Motors
 
   Helper code for today, include this at top of program, above `setup()`:
 
@@ -167,11 +169,9 @@ We're going to allot some time to allow you guys to experiment with the movement
 
 ## Week 3: Conditional Statements and Sensors
 
-
 * Review of last week (10 minutes)
-### Lesson Plan
 
-(60 minutes)
+### Lesson Plan
 
 A lot of coding revolves around **conditional statements**. If you're already familiar with coding, you may recognize them as `if`-`then`-`else` statements.
 
