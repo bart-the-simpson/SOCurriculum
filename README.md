@@ -126,13 +126,13 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 Now everytime we write `turnOnMotors();`, it will run the `motors.setSpeeds(SPEED, SPEED)` code inside of it. Before we test it out, we should have a function that turns off the motors as well. *Does anyone know what number we could put here to make the robot stop moving?*
 ```C++
     void turnOffMotors() {
-        motors.setSpeeds(???, ???)
+        motors.setSpeeds(???, ???);
     }
 ```
 **Solution:**
 ```C++
     void turnOffMotors() {
-        motors.setSpeeds(0, 0)
+        motors.setSpeeds(0, 0);
     }
 ```
 Let's try to think back to our lesson last week where we made the robot's LED to flash for 3 seconds and then stop. *Do you guys think you can modify the code we had last week to make it move for 3 seconds and then come to a stop?*
