@@ -1,8 +1,12 @@
-# Outline for School Outreach Program
+# Outline for WiC School Outreach Program
 
 * Each day is ~90 minutes
-* *italicized text* means a question that you can turn and ask the students. Rhetorical questions generally are not italicized
-* **bold** is for important vocabulary or an action you take
+* *italicized* text means a question that you can turn and ask the students 
+  * Rhetorical questions generally are not italicized
+* **bold** is for important vocabulary
+* ==highlighted== text is for actions
+
+
 
 ## Initial setup
 
@@ -90,7 +94,7 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 * Students install ZumoShield library (necessary in order to use Zumo header files) (5 minutes)
 ### Lesson Plan
 
-(60 Minutes)
+(60 minutes)
 
   Helper code for today, include this at top of program, above `setup()`:
 
@@ -166,6 +170,9 @@ We're going to allot some time to allow you guys to experiment with the movement
 
 * Review of last week (10 minutes)
 ### Lesson Plan
+
+(60 minutes)
+
 A lot of coding revolves around **conditional statements**. If you're already familiar with coding, you may recognize them as `if`-`then`-`else` statements.
 
 #### Conditional Statements
