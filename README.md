@@ -153,7 +153,8 @@ Let's go back to the original code for the motor's speed `motors.setSpeeds(SPEED
         motors.setSpeeds(-SPEED, SPEED);
     }
 ```
-We're going to allot some time to allow you guys to experiment with the movement motors on the robot! ==Lead and helpers walk around, help with code, and encourage the students to have fun with the robot while making sure it doesn't fall!==
+We're going to allot some time to allow you guys to experiment with the movement motors on the robot! 
+==Lead and helpers walk around, help with code, and encourage the students to have fun with the robot while making sure it doesn't fall!==
 
 
 ### Outro 
