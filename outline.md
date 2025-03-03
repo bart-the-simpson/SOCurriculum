@@ -5,34 +5,46 @@
 * **bold** is for important vocabulary or an action you take
 
 ## Initial setup
+
 Arrange with teachers to ensure that the Arduino IDE is installed on student computers: https://arduino.cc/download/
 
 ## Week 1: Intro to Programming and LEDs
 
-* Introduction (5 minutes)
-    * Introduce ourselves, WiC, and MESA
+### Introductions
+
+(30 minutes)
+
+* Introduce ourselves, WiC, and MESA
     * Briefly go over the program
 * Students introduce themselves (20 minutes)
     * Name and year
     * Why did you sign up for this program?
     * Have you programmed before?
-    * One fun fact about yourself :)*
-* Lecture (20 minutes)
-    * What is a **program**?
-        * Computers require you to be very specific
-        * It might seem hard, but we'll learn bit-by-bit
-        * **Show the make-up of an Arduino program with a screenshot**
-    * What is a **Zumo**?
-    * What is an **Arduino**?
-* Hands-on programming (40 minutes)
-    * Open the Arduino IDE
-    * Install the ZumoShield library
-    * Program comes preloaded with two functions, `setup()` and `loop()`
-    * A **function** is a block of reusable code that does something specific
-        * You can write your own functions, but today we'll be working with functions that are already in the program
-    * setup() is run once at the beginning
-    * loop() loops
+    * One fun fact about yourself :)
+
+### Brief Lecture 
+
+(20 minutes)
+
+  * What is a **program**?
+      * Computers require you to be very specific
+      * It might seem hard, but we'll learn bit-by-bit
+      * ==Show the make-up of an Arduino program with a screenshot==
+  * What is a **Zumo**?
+  * What is an **Arduino**?
+
+### Hands-on programming 
+
+(40 minutes)
+
+  * Open the Arduino IDE and Install the **ZumoShield library**
+  * Program comes preloaded with two functions, `setup()` and `loop()`
+  * A **function** is a block of reusable code that does something specific
+      * You can write your own functions, but today we'll be working with functions that are already in the program
+  * `setup()` is run once at the beginning and `loop()` loops your code
     
+#### Intro to Functions
+
 ``` C++
     void setup() {
         pinMode(13, OUTPUT);
@@ -60,27 +72,35 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
         digitalWrite(13, LOW);
     }
 ```
-* Outro (5 minutes)
-    * Go over the day's accomplishments
-        * Learned about our Arduino Zumo robot, programs, and functions
-        * `pinMode()`, `digitalWrite()`, and `delay()`
-        * Hands-on coding with the Arduino Zumo's LED
-    * What's planned for next week?
-        * Making the robot move!
+
+### Outro 
+
+(5 minutes)
+
+  * Go over the day's accomplishments
+      * Learned about our Arduino Zumo robot, programs, and functions
+      * `pinMode()`, `digitalWrite()`, and `delay()`
+      * Hands-on coding with the Arduino Zumo's LED
+  * What's planned for next week?
+      * Making the robot move!
 
 ## Week 2: Functions and Motors
 
 * Review of last week (10 minutes)
 * Students install ZumoShield library (necessary in order to use Zumo header files) (5 minutes)
-* Lesson (55 minutes)
-    * Helper code for today, include at top of program, above setup():
+### Lesson Plan
+
+(60 Minutes)
+
+  Helper code for today, include this at top of program, above `setup()`:
+
 ```C++
     #include <ZumoMotors.h>
     const int SPEED = 100;
     ZumoMotors motors;
 ```
 
-**Explain while the students copy the code.**
+==Explain while the students copy the code.==
 
 `include <ZumoMotors.h>`: ZumoMotors is a **library**, pre-written code made by a programmer so we can do specific things, in this case, making our robot move. Someone has written all the functions to make the robot move - this statement takes the contents of the file "ZumoMotors.h" and copies it into our code, so we can use them in our program. Note there is no semicolon at the end of the line!
 
@@ -89,6 +109,8 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 `ZumoMotors motors;` allows us to use the ZumoMotors code in our program.
 
 `motors.setSpeeds(SPEED, SPEED)` is code from the **library** we imported earlier. The two numbers inside the parentheses are **arguments**. Think of them like inputs to the function. *What do you guys think will happen if we ran this code, knowing it relates to the movement motors?* However, it would probably get hard to retype over and over again. We made our own variable earlier with `SPEED`, why don't we try writing our own functions as well? 
+
+#### Writing Our Own Functions
 
 ```C++
     void turnOnMotors() {
@@ -125,22 +147,29 @@ Let's go back to the original code for the motor's speed `motors.setSpeeds(SPEED
         motors.setSpeeds(-SPEED, SPEED);
     }
 ```
-We're going to allot some time to allow you guys to experiment with the movement motors on the robot! **Lead and helpers walk around, help with code, and encourage the students to have fun with the robot while making sure it doesn't fall!**
+We're going to allot some time to allow you guys to experiment with the movement motors on the robot! ==Lead and helpers walk around, help with code, and encourage the students to have fun with the robot while making sure it doesn't fall!==
 
 
-* Outro (10 minutes)
-    * Go over the day's accomplishments
-        * Learned about robot movement, libraries, and constants
-        * `motors.setSpeeds()`, `turnOnMotors()`, `turnOffMotors()`, `turnInPlace()`
-        * Experimenting with the robot's movements
-    * What's planned for next week?
-        * Buzzers and Sensors!
+### Outro 
+
+(10 minutes)
+
+  * Go over the day's accomplishments
+      * Learned about robot movement, libraries, and constants
+      * `motors.setSpeeds()`, `turnOnMotors()`, `turnOffMotors()`, `turnInPlace()`
+      * Experimenting with the robot's movements
+  * What's planned for next week?
+      * Buzzers and Sensors!
 
 ## Week 3: Conditional Statements and Sensors
 
+
 * Review of last week (10 minutes)
-* Lesson (60 minutes)
-  * A lot of coding revolves around **conditional statements**. If you're already familiar with coding, you may recognize them as `if`-`then`-`else` statements.
+### Lesson Plan
+A lot of coding revolves around **conditional statements**. If you're already familiar with coding, you may recognize them as `if`-`then`-`else` statements.
+
+#### Conditional Statements
+
 ``` C++
     int x = 5;
     if (x > 10) {
@@ -151,9 +180,11 @@ We're going to allot some time to allow you guys to experiment with the movement
         // does nothing
     }
 ```
-The statement inside the parentheses is a **Boolean** value, which means it can either be **true** or **false**. *In the example above, is `x > 10` true or false?* That means our program only does something if the integer `x` is greater than 10.
+The statement inside the parentheses is a **Boolean** value, which means it can either be **true** or **false**. *In the example above, is* `x > 10` *true or false?* That means our program only does something if the integer `x` is greater than 10.
 
 If you flip your Arduino Zumo upside down, you will see six sensors. These sensors detect how light or dark the surface under it is. Tying this back to what we were doing last week with movement, what if I wanted my robot to move until it hit this black strip of electrical tape? We would use a conditional statement, similar to our simple program here (x > 10 program).
+
+#### Arrays and Sensors
 
 We're going to represent the set of six sensors as an **array**. An array in C++ is a collection of data items. See `int values[6] = {3, 2, 12, 54, 2, 1}`. `values` is the name of the array, [6] is the size of the array, and `int` is the data type that's allowed to be in the array. `{3, 2, 12, 54, 2, 1}` is the values in the actual array and notice these are all `int`s. 
 
@@ -199,7 +230,8 @@ Here's a simple program where if the sensors detect a dark line, it activates it
     }
 ```
 
-Using the functions we wrote last week, can you guys write a program that starts with the robot moving and then the robot comes to a stop when it detects a black line? **Lead and helpers walk around and help.**
+Using the functions we wrote last week, can you guys write a program that starts with the robot moving and then the robot comes to a stop when it detects a black line? 
+==Lead and helpers walk around and help.==
 
 **Solution:**
 ```C++
@@ -210,5 +242,22 @@ void loop() {
         turnOffMotors();
     }
 }
-
 ```
+
+#### Debugging with Serial Monitor*
+
+* Only include if time allows AND lots of students are struggling with the robot's sensors detecting the line
+
+The Serial Monitor allows you to print data to your screen. It's similar to the various `print` commands in other programming languages. You can use it to debug your code, in this case, to check the values of the robots's sensors.
+
+```C++
+void setup() {
+	Serial.begin(9600);
+}
+
+void loop() {
+    Serial.print(values[0]);
+}
+```
+
+This will output the value stored in sensor 0 to your screen so you can see them in real time. Keep in mind that sensor 0 is the left-most sensor. Use this information to tweak the `DETECTION_THRESHOLD` constant in your code so your robot stops at the line!
