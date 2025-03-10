@@ -271,3 +271,14 @@ void loop() {
 ```
 
 This will output the value stored in sensor 0 to your screen so you can see them in real time. Keep in mind that sensor 0 is the left-most sensor. Use this information to tweak the `DETECTION_THRESHOLD` constant in your code so your robot stops at the line!
+
+### Outro
+
+(10 minutes)
+
+  * Go over the day's accomplishments
+      * Learned about conditional statements, variables, arrays, and sensors
+      * `sensors.init()`, `sensors.read()`, `if`-`else`
+      * Experimenting with the robot's sensors and movements
+  * What's planned for next week?
+      * Final Project(?)
