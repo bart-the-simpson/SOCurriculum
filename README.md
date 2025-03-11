@@ -35,7 +35,7 @@ Arrange with teachers to ensure that the Arduino IDE is installed on student com
   * What is a **Zumo**?
   * What is an **Arduino**?
 
-### Hands-on programming 
+### Lesson Plan
 
 (40 minutes)
 
@@ -53,6 +53,15 @@ Arrange with teachers to ensure that the Arduino IDE is installed on student com
         digitalWrite(13, HIGH);
 }
 ```
+
+To upload your code into the Arduino, you must:
+
+1. **link** the cable to your computer
+2. **select** the correct Port
+    * *Drop-down menu* on newer versions
+    * Tools > Port > COM# on older versions
+    * The Port won't appear if the robot is not connected
+3. and press **Upload**!
 
 `pinMode()` and `digitalWrite()` are also functions, notice how they have parentheses following their names. When we use functions, we end the line with a semicolon, similar to using a period to end a sentence.
 
@@ -114,9 +123,21 @@ The function `delay()` pauses the program for a given amount of time. `delay(100
 
 `ZumoMotors motors;` allows us to use the ZumoMotors code in our program.
 
-`motors.setSpeeds(SPEED, SPEED)` is code from the **library** we imported earlier. The two numbers inside the parentheses are **arguments**. Think of them like inputs to the function. *What do you guys think will happen if we ran this code, knowing it relates to the movement motors?* However, it would probably get hard to retype over and over again. We made our own variable earlier with `SPEED`, why don't we try writing our own functions as well? 
+`motors.setSpeeds(SPEED, SPEED)` is code from the **library** we imported earlier. The two numbers inside the parentheses are **arguments**. Think of them like inputs to the function. *What do you guys think will happen if we ran this code, knowing it relates to the movement motors?* 
+
+Let's try to think back to our lesson last week where we made the robot's LED to flash for 3 seconds and then stop. *Do you guys think you can modify the code we had last week to make it move for 3 seconds and then come to a stop?*
+
+```C++
+    void setup() {
+        motors.setSpeeds(SPEED, SPEED);
+        delay(3000);
+        motors.setSpeeds(0, 0);
+    }
+```
 
 #### Writing Our Own Functions
+
+ However, it would probably get hard to retype over and over again. We made our own variable earlier with `SPEED`, why don't we try writing our own functions as well? 
 
 ```C++
     void turnOnMotors() {
@@ -135,7 +156,7 @@ Now everytime we write `turnOnMotors();`, it will run the `motors.setSpeeds(SPEE
         motors.setSpeeds(0, 0);
     }
 ```
-Let's try to think back to our lesson last week where we made the robot's LED to flash for 3 seconds and then stop. *Do you guys think you can modify the code we had last week to make it move for 3 seconds and then come to a stop?*
+Let's try using these new functions to make our previous code easier to understand.
 
 **Solution:**
 ```C++
