@@ -277,7 +277,7 @@ void loop() {
 
 #### Debugging with Serial Monitor*
 
-* Only include if time allows AND lots of students are struggling with the robot's sensors detecting the line
+*Only include if time allows AND lots of students are struggling with the robot's sensors detecting the line
 
 The Serial Monitor allows you to print data to your screen. It's similar to the various `print` commands in other programming languages. You can use it to debug your code, in this case, to check the values of the robots's sensors.
 
@@ -302,4 +302,127 @@ This will output the value stored in sensor 0 to your screen so you can see them
       * `sensors.init()`, `sensors.read()`, `if`-`else`
       * Experimenting with the robot's sensors and movements
   * What's planned for next week?
-      * Final Project(?)
+      * Buzzers!
+
+## Week 4: Buzzers
+
+* Review of last week (10 minutes)
+
+### Lesson Plan
+
+Our Arduino Zumo also has the capacity to produce sounds!
+
+At the top of your old program, include this **helper code**:
+
+```C++
+#include <ZumoBuzzer.h>
+
+int VOLUME = 9; 
+int DURATION = 500;
+
+ZumoBuzzer buzzer;
+```
+
+This code is very similar to the code we needed to include for the ZumoMotors section. One thing of note is that the **maximum volume on our Arduino is 15** and **the minimum is 9**. Any lower and the Arduino will not output any sound.
+
+*Who here is familiar with playing and reading music?* As a refresher, notes have a pitch (typically represented by a letter) and a duration based on the number of beats.
+
+The command that we will use to actually play sound is `buzzer.playNote(note, length, volume)`.
+
+The `note` parameter will look like `NOTE_C(4)`. If played, this will play the C4 note also known as Middle C. You can change the letter and the octave to play any note on the scale. We won't be making music exactly, so don't worry about which note you choose, as long as the octave is around 3 to 5.
+
+The `length` parameter will use our `DURATION` constant we used earlier. It is currently set at `500` for 500ms or half a second. If you want the robot to play for longer than that, you can multiply it in the function call.
+
+The `volume` parameter will simply use our `VOLUME` constant.
+
+One last thing before we implement this into our program: after the `buzzer.playNote()` call, we must **wait** or `delay()` for the same amount of time. If not, it will lead to overlap in the sounds.
+
+Since we always have to `delay` after using `playNote()`, why don't we create a function that does that?
+
+**Solution:**
+```
+void myPlayNote(int note, int length)
+{
+  buzzer.playNote(note, length, VOLUME);
+  delay(length);
+}
+```
+
+Recall our program that used conditional statements and the sensor. You should have this open.
+```C++
+void loop() {
+    sensors.read(values);
+    turnOnMotors();
+    if (values[0] > DETECTION_THRESHOLD) {
+        turnOffMotors();
+    }
+}
+```
+Can you make it so the Arduino plays 3 beeps of all different notes that each last a quarter of a second when it stops?
+
+**Solution:** (up to this point)
+```C++
+#include <ZumoMotors.h>
+#include <ZumoReflectanceSensorArray.h>
+#include <ZumoBuzzer.h>
+
+int VOLUME = 9; 
+int DURATION = 500;
+const int DETECTION_THRESHOLD = 1300;
+const int LED_PIN = 13;
+const int SPEED = 100;
+int values[6];
+
+ZumoMotors motors;
+ZumoReflectanceSensorArray sensors;
+ZumoBuzzer buzzer;
+
+void setup() {
+  sensors.init();
+}
+
+void loop() {
+    sensors.read(values);
+    turnOnMotors();
+    if (values[0] > DETECTION_THRESHOLD) {
+        turnOffMotors();
+        myPlayNote(NOTE_C(4), 0.5 * DURATION); // NEW
+        myPlayNote(NOTE_B(5), 0.5 * DURATION); // NEW
+        myPlayNote(NOTE_D(5), 0.5 * DURATION); // NEW
+    }
+}
+
+void turnOnMotors()
+{
+  motors.setSpeeds(SPEED, SPEED);
+}
+
+void turnOffMotors()
+{
+  motors.setSpeeds(0, 0);
+}
+
+void turnInPlace()
+{
+  motors.setSpeeds(-SPEED, SPEED);
+}
+
+void myPlayNote(int note, int length)
+{
+  buzzer.playNote(note, length, VOLUME);
+  delay(length);
+}
+```
+
+Now it's time to experiment with incorporating the buzzer into fun routines that you create for your robot!
+
+### Outro 
+
+(10 minutes)
+
+* Go over the day's accomplishments
+    * Learned about the buzzer function
+    * `buzzer.playNote()`, `myPlayNote()`
+    * Further experimentation with the Arduino's movements, sensors, and buzzers
+* What's planned for next week?
+    * Brief final project!
