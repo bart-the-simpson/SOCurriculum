@@ -6,7 +6,7 @@
 * **bold** is for important vocabulary
 * ==highlighted== text is for actions
 
-## Initial setup
+## Initial Setup
 
 Arrange with teachers to ensure that the Arduino IDE is installed on student computers: https://arduino.cc/download/
 
