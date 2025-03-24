@@ -312,6 +312,8 @@ This will output the value stored in sensor 0 to your screen so you can see them
 
 Our Arduino Zumo also has the capacity to produce sounds!
 
+#### Buzzers
+
 At the top of your old program, include this **helper code**:
 
 ```C++
@@ -364,10 +366,10 @@ Can you make it so the Arduino plays 3 beeps of all different notes that each la
 ```C++
 #include <ZumoMotors.h>
 #include <ZumoReflectanceSensorArray.h>
-#include <ZumoBuzzer.h>
+#include <ZumoBuzzer.h> // NEW
 
-int VOLUME = 9; 
-int DURATION = 500;
+int VOLUME = 9; // NEW
+int DURATION = 500; // NEW
 const int DETECTION_THRESHOLD = 1300;
 const int LED_PIN = 13;
 const int SPEED = 100;
@@ -375,7 +377,7 @@ int values[6];
 
 ZumoMotors motors;
 ZumoReflectanceSensorArray sensors;
-ZumoBuzzer buzzer;
+ZumoBuzzer buzzer; // NEW
 
 void setup() {
   sensors.init();
@@ -386,9 +388,9 @@ void loop() {
     turnOnMotors();
     if (values[0] > DETECTION_THRESHOLD) {
         turnOffMotors();
-        myPlayNote(NOTE_C(4), 0.5 * DURATION); // NEW
-        myPlayNote(NOTE_B(5), 0.5 * DURATION); // NEW
-        myPlayNote(NOTE_D(5), 0.5 * DURATION); // NEW
+        myPlayNote(NOTE_C(4), DURATION / 2); // NEW
+        myPlayNote(NOTE_B(5), DURATION / 2); // NEW
+        myPlayNote(NOTE_D(5), DURATION / 2); // NEW
     }
 }
 
@@ -407,7 +409,7 @@ void turnInPlace()
   motors.setSpeeds(-SPEED, SPEED);
 }
 
-void myPlayNote(int note, int length)
+void myPlayNote(int note, int length) // NEW
 {
   buzzer.playNote(note, length, VOLUME);
   delay(length);
